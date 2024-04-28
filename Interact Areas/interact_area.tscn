@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3o7dlcbcla2c"]
+
+[ext_resource type="Script" path="res://Interact Areas/interact_area.gd" id="1_c4u5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35ne1"]
+
+[node name="Interact Area" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_c4u5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.25, 1.25)
+shape = SubResource("RectangleShape2D_35ne1")
