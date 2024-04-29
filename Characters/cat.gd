@@ -12,6 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var animation_locked : bool = false
 var direction : Vector2 = Vector2.ZERO
 var last_action : String = "none"
+var held_item = null
 var force_coefficient = 0.001
 
 func _ready():
@@ -39,8 +40,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Interact"):
 		execute_interaction()
 		
-	var pre_collision_velocity
-	pre_collision_velocity = velocity 
+	if held_item:
+		print("held item exists")
+		held_item.position.x = 0
+		held_item.position.y = 0
+
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() is RigidBody2D:
@@ -67,7 +72,6 @@ func update_facing_direction():
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
 
-
 #Interaction
 func _on_interaction_area_area_entered(area):
 	all_interactions.insert(0, area)
@@ -85,9 +89,21 @@ func update_interactions():
 		interact_label.text = ""
 		
 func execute_interaction():
-	if all_interactions:
+	#idea: if held_item != "none" then drop item (reparent). elif all_interactions;
+	if held_item:
+		#drop item
+		held_item.reparent($"/root/Scene1")
+		held_item.position.x = self.position.x
+		held_item.position.y = self.position.y
+		held_item = null
+		print("dropped item")
+	elif all_interactions:
 		var current_interaction = all_interactions[0]
-		match current_interaction.interact_value:
-			"cuddle":
-				last_action = "cuddle"
+		match current_interaction.interact_type:
+			"animation":
+				last_action = current_interaction.interact_value
+			"pick up":
+				print("pickup")
+				held_item = get_node("../" + current_interaction.interact_value)
+				held_item.reparent(self) #held_item becomes child of player node
 				

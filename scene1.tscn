@@ -5957,7 +5957,7 @@ size = Vector2(68, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s77bc"]
 size = Vector2(4.99999, 8)
 
-[node name="Node2D" type="Node2D"]
+[node name="Scene1" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-170, 101)
@@ -6052,16 +6052,19 @@ position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_uy0mi")
 
 [node name="Mouse" type="RigidBody2D" parent="."]
+position = Vector2(-280, 125)
 collision_layer = 4
 collision_mask = 7
-mass = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
-position = Vector2(99, 125.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_s77bc")
 
+[node name="Interact Area" parent="Mouse" instance=ExtResource("8_6bxve")]
+interact_label = "Mouse"
+interact_type = "pick up"
+interact_value = "Mouse"
+
 [node name="Mouse" type="Sprite2D" parent="Mouse"]
-position = Vector2(99, 125)
 scale = Vector2(0.375, 0.366667)
 texture = ExtResource("9_3e8u5")
