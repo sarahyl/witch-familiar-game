@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://de6r00qa7txa"]
+[gd_scene load_steps=23 format=3 uid="uid://de6r00qa7txa"]
 
 [ext_resource type="Texture2D" uid="uid://cvab6gnxh37fc" path="res://Assets/Platformer Assets/Platformer Assets facet.png" id="1_3r0oe"]
+[ext_resource type="Script" path="res://scene1.gd" id="1_tdyqj"]
 [ext_resource type="Texture2D" uid="uid://cgccafnw2fv64" path="res://Assets/Platformer Assets/background.png" id="1_tenac"]
 [ext_resource type="Texture2D" uid="uid://bkmhxoli7soav" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings facet.png" id="2_n7bdt"]
 [ext_resource type="PackedScene" uid="uid://bs17m78f15kai" path="res://Characters/cat.tscn" id="3_yd7kl"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c3o7dlcbcla2c" path="res://Interact Areas/interact_area.tscn" id="8_6bxve"]
 [ext_resource type="Texture2D" uid="uid://jlmn5mnglbw1" path="res://Assets/own/table.png" id="8_28b7y"]
 [ext_resource type="Texture2D" uid="uid://y8sn64hlrdd0" path="res://Assets/own/mouse.png" id="9_3e8u5"]
+[ext_resource type="PackedScene" uid="uid://fc1xaxfskn6s" path="res://Components/textbox.tscn" id="10_avcso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_savc5"]
 size = Vector2(54, 208)
@@ -5958,6 +5960,7 @@ size = Vector2(68, 8)
 size = Vector2(4.99999, 8)
 
 [node name="Scene1" type="Node2D"]
+script = ExtResource("1_tdyqj")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-170, 101)
@@ -6068,3 +6071,5 @@ interact_value = "Mouse"
 [node name="Mouse" type="Sprite2D" parent="Mouse"]
 scale = Vector2(0.375, 0.366667)
 texture = ExtResource("9_3e8u5")
+
+[node name="Game Start Textbox" parent="." instance=ExtResource("10_avcso")]

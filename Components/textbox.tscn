@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://fc1xaxfskn6s"]
+
+[ext_resource type="FontFile" uid="uid://cfvv7ffwbtplv" path="res://Assets/Kenney Pixel.ttf" id="1_7uknq"]
+[ext_resource type="Script" path="res://Components/textbox.gd" id="1_syocg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nemtu"]
+bg_color = Color(0.635294, 0.568627, 0.705882, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.392157, 0.270588, 0.466667, 1)
+
+[node name="Textbox" type="CanvasLayer"]
+script = ExtResource("1_syocg")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -148.0
+offset_right = -27.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nemtu")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1057, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_7uknq")
+theme_override_font_sizes/font_size = 35
+text = "Text"
+autowrap_mode = 2
+clip_text = true

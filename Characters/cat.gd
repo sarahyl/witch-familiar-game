@@ -41,9 +41,7 @@ func _physics_process(delta):
 		execute_interaction()
 		
 	if held_item:
-		print("held item exists")
-		held_item.position.x = 0
-		held_item.position.y = 0
+		held_item.position.y = 6
 
 
 	for i in get_slide_collision_count():
@@ -69,8 +67,13 @@ func update_animation():
 func update_facing_direction():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
+		if held_item:
+			held_item.position.x = 5
 	elif direction.x < 0:
 		animated_sprite.flip_h = true
+		if held_item:
+			held_item.position.x = -5
+
 
 #Interaction
 func _on_interaction_area_area_entered(area):
@@ -92,18 +95,21 @@ func execute_interaction():
 	#idea: if held_item != "none" then drop item (reparent). elif all_interactions;
 	if held_item:
 		#drop item
+		held_item.get_node("CollisionShape2D").disabled = false
 		held_item.reparent($"/root/Scene1")
 		held_item.position.x = self.position.x
 		held_item.position.y = self.position.y
 		held_item = null
-		print("dropped item")
 	elif all_interactions:
 		var current_interaction = all_interactions[0]
 		match current_interaction.interact_type:
 			"animation":
 				last_action = current_interaction.interact_value
 			"pick up":
-				print("pickup")
 				held_item = get_node("../" + current_interaction.interact_value)
+				get_node("../" + current_interaction.interact_value + "/CollisionShape2D").disabled = true
 				held_item.reparent(self) #held_item becomes child of player node
+				held_item.position.x = -5
+				held_item.position.y = 6
+
 				
